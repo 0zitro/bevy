@@ -249,6 +249,8 @@ pub fn derive_world_query_impl(ast: DeriveInput) -> TokenStream {
                         }
                     }
 
+                    const IS_ARCHETYPAL: bool = true #(&& <#field_types as #path::query::WorldQuery>::ReadOnlyFetch::IS_ARCHETYPAL)*;
+
                     const IS_DENSE: bool = true #(&& <#field_types as #path::query::WorldQuery>::ReadOnlyFetch::IS_DENSE)*;
 
                     #[inline]
@@ -297,6 +299,8 @@ pub fn derive_world_query_impl(ast: DeriveInput) -> TokenStream {
                             #(#ignored_field_idents: Default::default(),)*
                         }
                     }
+
+                    const IS_ARCHETYPAL: bool = true #(&& <#field_types as #path::query::WorldQuery>::#fetch_associated_type::IS_ARCHETYPAL)*;
 
                     const IS_DENSE: bool = true #(&& <#field_types as #path::query::WorldQuery>::#fetch_associated_type::IS_DENSE)*;
 

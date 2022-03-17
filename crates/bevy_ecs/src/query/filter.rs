@@ -143,6 +143,8 @@ impl<'w, 's, T: Component> Fetch<'w, 's> for WithFetch<T> {
         }
     };
 
+    const IS_ARCHETYPAL: bool = true;
+
     #[inline]
     unsafe fn set_table(&mut self, _state: &Self::State, _table: &Table) {}
 
@@ -266,6 +268,8 @@ impl<'w, 's, T: Component> Fetch<'w, 's> for WithoutFetch<T> {
         }
     };
 
+    const IS_ARCHETYPAL: bool = true;
+
     #[inline]
     unsafe fn set_table(&mut self, _state: &Self::State, _table: &Table) {}
 
@@ -374,6 +378,8 @@ macro_rules! impl_query_filter_tuple {
             }
 
             const IS_DENSE: bool = true $(&& $filter::IS_DENSE)*;
+
+            const IS_ARCHETYPAL: bool = true $(&& $filter::IS_ARCHETYPAL)*;
 
             #[inline]
             unsafe fn set_table(&mut self, state: &Self::State, table: &Table) {
@@ -548,6 +554,8 @@ macro_rules! impl_tick_filter {
                     StorageType::SparseSet => false,
                 }
             };
+
+            const IS_ARCHETYPAL: bool = false;
 
             unsafe fn set_table(&mut self, state: &Self::State, table: &Table) {
                 self.table_ticks = table
