@@ -53,38 +53,38 @@ mod tests {
         let mut a_query = world.query::<&A>();
         assert_eq!(a_query.iter_combinations::<0>(&world).count(), 0);
         assert_eq!(
-            a_query.iter_combinations::<0>(&world).size_hint(),
-            (0, Some(0))
+            a_query.iter_combinations::<0>(&world).size_hint().1,
+            Some(0)
         );
         assert_eq!(a_query.iter_combinations::<1>(&world).count(), 4);
         assert_eq!(
-            a_query.iter_combinations::<1>(&world).size_hint(),
-            (0, Some(4))
+            a_query.iter_combinations::<1>(&world).size_hint().1,
+            Some(4)
         );
         assert_eq!(a_query.iter_combinations::<2>(&world).count(), 6);
         assert_eq!(
-            a_query.iter_combinations::<2>(&world).size_hint(),
-            (0, Some(6))
+            a_query.iter_combinations::<2>(&world).size_hint().1,
+            Some(6)
         );
         assert_eq!(a_query.iter_combinations::<3>(&world).count(), 4);
         assert_eq!(
-            a_query.iter_combinations::<3>(&world).size_hint(),
-            (0, Some(4))
+            a_query.iter_combinations::<3>(&world).size_hint().1,
+            Some(4)
         );
         assert_eq!(a_query.iter_combinations::<4>(&world).count(), 1);
         assert_eq!(
-            a_query.iter_combinations::<4>(&world).size_hint(),
-            (0, Some(1))
+            a_query.iter_combinations::<4>(&world).size_hint().1,
+            Some(1)
         );
         assert_eq!(a_query.iter_combinations::<5>(&world).count(), 0);
         assert_eq!(
-            a_query.iter_combinations::<5>(&world).size_hint(),
-            (0, Some(0))
+            a_query.iter_combinations::<5>(&world).size_hint().1,
+            Some(0)
         );
         assert_eq!(a_query.iter_combinations::<1024>(&world).count(), 0);
         assert_eq!(
-            a_query.iter_combinations::<1024>(&world).size_hint(),
-            (0, Some(0))
+            a_query.iter_combinations::<1024>(&world).size_hint().1,
+            Some(0)
         );
 
         let values: Vec<[&A; 2]> = world.query::<&A>().iter_combinations(&world).collect();
